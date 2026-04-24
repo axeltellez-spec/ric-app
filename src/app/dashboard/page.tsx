@@ -2,15 +2,17 @@
 
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
+import { useFavorites } from '@/hooks/useFavorites';
 
 interface Function {
-  id: number;
+  id: string | number;
   ticker: string;
   name: string;
   category: string;
 }
 
 export default function DashboardPage() {
+  const { favorites, isLoaded } = useFavorites();
   const [stats, setStats] = useState({
     totalFunctions: 0,
     totalFavorites: 0,
@@ -23,19 +25,36 @@ export default function DashboardPage() {
     const loadDashboardData = async () => {
       try {
         const response = await fetch('/data/functions.json');
-        const functions: Function[] = await response.json();
+        const data = await response.json();
 
-        const favoriteIds = JSON.parse(localStorage.getItem('favorites') || '[]');
-        const favorites = functions.filter((f) => favoriteIds.includes(f.id));
-        const categories = new Set(functions.map((f) => f.category)).size;
+        // Handle both old array format and new object format
+        let functions: Function[] = [];
+        if (Array.isArray(data)) {
+          functions = data;
+        } else if (data && typeof data === 'object' && Array.isArray(data.functions)) {
+          functions = data.functions;
+        }
+
+        // Normalize function data to handle both English and Spanish field names
+        const normalizedFunctions = functions.map((f: any) => ({
+          id: f.id || f.codigo || '',
+          ticker: f.ticker || f.codigo || '',
+          name: f.name || f.nombre || '',
+          description: f.description || f.descripcion || '',
+          category: f.category || f.categoria || '',
+          imageUrl: f.imageUrl || f.imagen || undefined,
+        }));
+
+        const favoritesFunctions = normalizedFunctions.filter((f) => favorites.includes(f.id));
+        const categories = new Set(normalizedFunctions.map((f) => f.category)).size;
 
         setStats({
-          totalFunctions: functions.length,
-          totalFavorites: favorites.length,
+          totalFunctions: normalizedFunctions.length,
+          totalFavorites: favoritesFunctions.length,
           categories,
         });
 
-        setRecentFavorites(favorites.slice(0, 5));
+        setRecentFavorites(favoritesFunctions.slice(0, 5));
       } catch (error) {
         console.error('Error loading dashboard data:', error);
       } finally {
@@ -44,6 +63,16 @@ export default function DashboardPage() {
     };
 
     loadDashboardData();
+  }, [favorites]);
+
+  // Listen for storage changes from other tabs/windows
+  useEffect(() => {
+    const handleStorageChange = () => {
+      setLoading(true);
+    };
+
+    window.addEventListener('storage', handleStorageChange);
+    return () => window.removeEventListener('storage', handleStorageChange);
   }, []);
 
   if (loading) {

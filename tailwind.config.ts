@@ -11,12 +11,12 @@ const config: Config = {
       colors: {
         // RIC & Bloomberg branding colors
         ric: {
-          navy: '#001F3F',        // Primary navy blue
-          navyLight: '#0A2C52',   // Lighter navy
-          navyDark: '#001428',    // Darker navy
-          red: '#C41E3A',         // Brand red accent
-          redLight: '#E63946',    // Lighter red for hover
-          redDark: '#A01628',     // Darker red for pressed
+          navy: '#2d5a79',        // Primary navy blue (Bloomberg)
+          navyLight: '#3d7a99',   // Lighter navy
+          navyDark: '#1d3a59',    // Darker navy
+          red: '#c8102e',         // Brand red accent (Bloomberg)
+          redLight: '#e63946',    // Lighter red for hover
+          redDark: '#9a0a24',     // Darker red for pressed
         },
         // Neutral grays for financial design
         neutral: {
@@ -50,16 +50,16 @@ const config: Config = {
         mono: ['var(--font-geist-mono)', 'monospace'],
       },
       backgroundColor: {
-        'ric-navy': '#001F3F',
-        'ric-red': '#C41E3A',
+        'ric-navy': '#2d5a79',
+        'ric-red': '#c8102e',
       },
       textColor: {
-        'ric-navy': '#001F3F',
-        'ric-red': '#C41E3A',
+        'ric-navy': '#2d5a79',
+        'ric-red': '#c8102e',
       },
       borderColor: {
-        'ric-navy': '#001F3F',
-        'ric-red': '#C41E3A',
+        'ric-navy': '#2d5a79',
+        'ric-red': '#c8102e',
       },
     },
   },

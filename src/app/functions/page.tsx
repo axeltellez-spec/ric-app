@@ -23,6 +23,7 @@ export default function FunctionsPage() {
   const [functions, setFunctions] = useState<Function[]>([]);
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
+  const [viewAllMode, setViewAllMode] = useState(false);
   const { toggleFavorite, isFavorite } = useFavorites();
 
   // Load functions from public/data/functions.json
@@ -161,9 +162,9 @@ export default function FunctionsPage() {
   const mainCategories = categories.slice(0, 5);
 
   // Determine if we should show categories (only if no search term AND no categories are selected, OR categories are selected)
-  // Hide categories when user is searching without pre-selected categories
+  // Hide categories when user is searching without pre-selected categories or when in viewAllMode
   const hasSearchTerm = searchTerm.trim().length > 0;
-  const shouldShowCategories = !hasSearchTerm || selectedCategories.length > 0;
+  const shouldShowCategories = !viewAllMode && (!hasSearchTerm || selectedCategories.length > 0);
 
   return (
     <div className="min-h-screen bg-white">
@@ -208,7 +209,7 @@ export default function FunctionsPage() {
         </div>
 
         {/* Search Section - Full Width */}
-        <div className="-mb-10 -mx-6 mt-8">
+        <div className="-mb-14 -mx-6 mt-12">
           <div className="flex items-center gap-3 mb-3 px-6">
             <div className="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center">
               <svg className="w-6 h-6 text-ric-red" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -240,7 +241,7 @@ export default function FunctionsPage() {
 
         {/* Categories Section - Full Width - Show only if no search OR categories selected */}
         {shouldShowCategories && (
-          <div className="-mx-6 mb-6 transition-all duration-300 mt-8">
+          <div className="-mx-6 mb-6 transition-all duration-300 mt-2">
             <div className="flex items-center justify-between mb-6 px-6">
               <h2 className="text-xl font-bold text-ric-navy flex items-center gap-2">
                 <svg className="w-5 h-5 text-ric-red" fill="currentColor" viewBox="0 0 20 20">
@@ -250,11 +251,19 @@ export default function FunctionsPage() {
               </h2>
               <button
                 onClick={() => {
-                  const allCategories = Array.from(new Set(normalizedFunctions.map((f) => f.category)));
-                  setSelectedCategories(allCategories);
+                  if (!viewAllMode) {
+                    // Entering view all mode - select all categories and hide categories section
+                    const allCategories = Array.from(new Set(normalizedFunctions.map((f) => f.category)));
+                    setSelectedCategories(allCategories);
+                    setViewAllMode(true);
+                  } else {
+                    // Leaving view all mode - deselect all and show categories again
+                    setSelectedCategories([]);
+                    setViewAllMode(false);
+                  }
                 }}
                 className="text-ric-red text-sm font-semibold hover:text-ric-navy flex items-center gap-1 bg-none border-none cursor-pointer">
-                Ver todas las funciones
+                {viewAllMode ? 'Ver todas las categorías' : 'Ver todas las funciones'}
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                 </svg>

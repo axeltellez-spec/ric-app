@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useParams } from 'next/navigation';
+import { useFavorites } from '@/hooks/useFavorites';
 
 interface Function {
   id: string | number;
@@ -32,8 +33,8 @@ export default function FunctionDetailPage() {
   const params = useParams();
   const id = params.id as string;
   const [func, setFunc] = useState<Function | null>(null);
-  const [isFavorite, setIsFavorite] = useState(false);
   const [loading, setLoading] = useState(true);
+  const { isFavorite, toggleFavorite } = useFavorites();
 
   useEffect(() => {
     const loadFunction = async () => {
@@ -72,10 +73,6 @@ export default function FunctionDetailPage() {
             imageUrl: found.imageUrl || found.imagen || undefined,
           };
           setFunc(normalized);
-
-          // Check if favorite
-          const favorites = JSON.parse(localStorage.getItem('favorites') || '[]');
-          setIsFavorite(favorites.includes((found.id || found.codigo)?.toString()));
         }
       } catch (error) {
         console.error('Error loading function:', error);
@@ -87,19 +84,6 @@ export default function FunctionDetailPage() {
     loadFunction();
   }, [id]);
 
-  const toggleFavorite = () => {
-    const favorites = JSON.parse(localStorage.getItem('favorites') || '[]');
-    const index = favorites.indexOf(func!.id);
-    
-    if (index > -1) {
-      favorites.splice(index, 1);
-    } else {
-      favorites.push(func!.id);
-    }
-    
-    localStorage.setItem('favorites', JSON.stringify(favorites));
-    setIsFavorite(!isFavorite);
-  };
 
   if (loading) {
     return (
@@ -140,7 +124,7 @@ export default function FunctionDetailPage() {
         <div className="bg-white rounded-2xl shadow-xl overflow-hidden">
           <div className="grid md:grid-cols-2 gap-0">
             {/* Image Section */}
-            <div className="relative h-96 md:h-full bg-gradient-to-br from-ric-navy to-ric-red overflow-hidden">
+            <div className="relative h-96 md:h-full bg-gradient-to-br from-ric-navy to-ric-red overflow-hidden md:order-2">
               {func.imageUrl ? (
                 <Image
                   src={func.imageUrl}
@@ -159,7 +143,7 @@ export default function FunctionDetailPage() {
             </div>
 
             {/* Content Section */}
-            <div className="p-8 md:p-12 flex flex-col justify-between">
+            <div className="p-8 md:p-12 flex flex-col justify-between md:order-1">
               {/* Header */}
               <div>
                 <div className="flex items-start justify-between mb-6">
@@ -175,11 +159,11 @@ export default function FunctionDetailPage() {
                     <h1 className="text-4xl font-bold text-ric-navy">{func.name}</h1>
                   </div>
                   <button
-                    onClick={toggleFavorite}
+                    onClick={() => toggleFavorite(func.id)}
                     className="p-3 rounded-full transition-all hover:bg-slate-100"
-                    title={isFavorite ? 'Remover de favoritos' : 'Agregar a favoritos'}
+                    title={isFavorite(func.id) ? 'Remover de favoritos' : 'Agregar a favoritos'}
                   >
-                    {isFavorite ? (
+                    {isFavorite(func.id) ? (
                       <svg className="w-8 h-8 text-ric-red fill-current" viewBox="0 0 24 24">
                         <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
                       </svg>
@@ -204,7 +188,7 @@ export default function FunctionDetailPage() {
                 {/* Info Grid */}
                 <div className="grid grid-cols-2 gap-4 py-6 border-t border-b border-slate-200">
                   <div>
-                    <p className="text-xs font-bold text-slate-500 uppercase tracking-wide">Código</p>
+                    <p className="text-xs font-bold text-slate-500 uppercase tracking-wide">Ticker</p>
                     <p className="text-2xl font-bold text-ric-red mt-1">{func.ticker}</p>
                   </div>
                   <div>
@@ -217,14 +201,14 @@ export default function FunctionDetailPage() {
               {/* CTA Button */}
               <div className="mt-8 pt-4">
                 <button
-                  onClick={toggleFavorite}
+                  onClick={() => toggleFavorite(func.id)}
                   className={`w-full py-3 rounded-lg font-bold text-lg transition-all ${
-                    isFavorite
+                    isFavorite(func.id)
                       ? 'bg-ric-red text-white hover:bg-red-700'
                       : 'bg-ric-navy text-white hover:bg-slate-900'
                   }`}
                 >
-                  {isFavorite ? '♥ Guardado en favoritos' : '+ Agregar a favoritos'}
+                  {isFavorite(func.id) ? '♥ Guardado en favoritos' : '+ Agregar a favoritos'}
                 </button>
               </div>
             </div>
@@ -236,8 +220,7 @@ export default function FunctionDetailPage() {
           <h3 className="text-lg font-bold text-ric-navy mb-4">Información de Bloomberg</h3>
           <p className="text-slate-600 text-sm leading-relaxed">
             Esta función es parte de la plataforma Bloomberg Terminal. Para más información detallada, 
-            integración con tu sistema, o acceso a la API de Bloomberg, por favor contacta al equipo de 
-            RIC Investment Club Lab de Finanza.
+            integración con tu sistema - Excel, o acceso a la TerminaI de Bloomberg, por favor contacta al equipo de monitores del Laboratorio de Finanzas.
           </p>
         </div>
       </div>

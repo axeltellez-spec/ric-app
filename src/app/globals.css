@@ -3,6 +3,10 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+
+  /* Colores Rosario Investment Club */
+  --ric-navy: #2d5a79;
+  --ric-red: #c8102e;
 }
 
 @theme inline {
@@ -10,6 +14,10 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+
+  /* Agregar colores personalizados al tema */
+  --color-ric-navy: var(--ric-navy);
+  --color-ric-red: var(--ric-red);
 }
 
 @media (prefers-color-scheme: dark) {
