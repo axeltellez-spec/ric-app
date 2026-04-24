@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="600" viewBox="0 0 800 600">
+  <defs>
+    <linearGradient id="newsgradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#ef4444;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#dc2626;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <rect width="800" height="600" fill="url(#newsgradient)"/>
+  <g transform="translate(400,300)">
+    <rect x="-60" y="-80" width="120" height="160" fill="none" stroke="white" stroke-width="3" rx="8"/>
+    <line x1="-50" y1="-60" x2="50" y2="-60" stroke="white" stroke-width="2"/>
+    <line x1="-50" y1="-40" x2="50" y2="-40" stroke="white" stroke-width="2"/>
+    <line x1="-50" y1="0" x2="50" y2="0" stroke="white" stroke-width="2"/>
+    <line x1="-50" y1="40" x2="50" y2="40" stroke="white" stroke-width="2"/>
+    <line x1="-50" y1="60" x2="30" y2="60" stroke="white" stroke-width="2"/>
+  </g>
+</svg>
