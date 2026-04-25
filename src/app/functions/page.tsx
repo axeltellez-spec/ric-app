@@ -168,9 +168,9 @@ export default function FunctionsPage() {
 
   return (
     <div className="min-h-screen bg-white">
-      <div className="container mx-auto px-6 pt-6 pb-0">
+      <div className="container mx-auto px-6 pt-4 pb-0">
         {/* Top section with badge, title, description and monitor */}
-        <div className="grid grid-cols-3 gap-4 mb-2 items-center">
+        <div className="grid grid-cols-3 gap-4 mb-0 items-start">
           {/* Left section - Content */}
           <div className="col-span-2">
             {/* Badge */}
@@ -197,19 +197,19 @@ export default function FunctionsPage() {
           </div>
 
           {/* Right section - Monitor */}
-          <div className="col-span-1 flex items-center justify-center h-full min-h-64">
+          <div className="col-span-1 flex items-center justify-center">
             <div className="w-full flex justify-center items-center">
               <img
                 src="/images/acel.png"
                 alt="Bloomberg Terminal Interface"
-                className="w-full h-auto object-contain scale-110"
+                className="w-full h-auto object-contain scale-125"
               />
             </div>
           </div>
         </div>
 
         {/* Search Section - Full Width */}
-        <div className="-mx-6 mb-4">
+        <div className="-mx-6 mb-4 mt-2">
           <div className="flex items-center gap-3 mb-3 px-6">
             <div className="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center">
               <svg className="w-6 h-6 text-ric-red" fill="none" stroke="currentColor" viewBox="0 0 24 24">
