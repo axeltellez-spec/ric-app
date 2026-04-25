@@ -170,7 +170,7 @@ export default function FunctionsPage() {
     <div className="min-h-screen bg-white">
       <div className="container mx-auto px-6 py-0 -mt-12">
         {/* Top section with badge, title, description and monitor */}
-        <div className="grid grid-cols-3 gap-4 -mb-8 items-center">
+        <div className="grid grid-cols-3 gap-4 -mb-2 items-center">
           {/* Left section - Content */}
           <div className="col-span-2">
             {/* Badge */}
@@ -209,7 +209,7 @@ export default function FunctionsPage() {
         </div>
 
         {/* Search Section - Full Width */}
-        <div className="-mb-16 -mx-6 mt-20">
+        <div className="-mb-8 -mx-6 mt-4">
           <div className="flex items-center gap-3 mb-3 px-6">
             <div className="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center">
               <svg className="w-6 h-6 text-ric-red" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -241,7 +241,7 @@ export default function FunctionsPage() {
 
         {/* Categories Section - Full Width - Show only if no search OR categories selected */}
         {shouldShowCategories && (
-          <div className="-mx-6 mb-6 transition-all duration-300 mt-2">
+          <div className="-mx-6 mb-6 transition-all duration-300 mt-0">
             <div className="flex items-center justify-between mb-6 px-6">
               <h2 className="text-xl font-bold text-ric-navy flex items-center gap-2">
                 <svg className="w-5 h-5 text-ric-red" fill="currentColor" viewBox="0 0 20 20">
