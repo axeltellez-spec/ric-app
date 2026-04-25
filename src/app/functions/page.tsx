@@ -170,7 +170,7 @@ export default function FunctionsPage() {
     <div className="min-h-screen bg-white">
       <div className="container mx-auto px-6 pt-6 pb-0">
         {/* Top section with badge, title, description and monitor */}
-        <div className="grid grid-cols-3 gap-4 mb-6 items-center">
+        <div className="grid grid-cols-3 gap-4 mb-2 items-center">
           {/* Left section - Content */}
           <div className="col-span-2">
             {/* Badge */}
@@ -198,11 +198,11 @@ export default function FunctionsPage() {
 
           {/* Right section - Monitor */}
           <div className="col-span-1 flex items-center justify-center h-full min-h-64">
-            <div className="w-full max-w-sm flex justify-center items-center">
+            <div className="w-full flex justify-center items-center">
               <img
                 src="/images/acel.png"
                 alt="Bloomberg Terminal Interface"
-                className="w-full h-auto object-contain"
+                className="w-full h-auto object-contain scale-110"
               />
             </div>
           </div>
