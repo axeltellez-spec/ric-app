@@ -100,7 +100,7 @@ export default function FunctionsPage() {
     'Acciones': {
       description: 'Datos y análisis de mercado de renta variable'
     },
-    'Derivados & Valoración': {
+    'Valoración': {
       description: 'Precios, riesgo y valoración de derivados'
     },
     'Economía & Macro': {
@@ -121,7 +121,7 @@ export default function FunctionsPage() {
           <path d="M3 13h2v8H3zm4-8h2v16H7zm4-2h2v18h-2zm4 4h2v14h-2zm4-1h2v15h-2z" />
         </svg>
       ),
-      'Derivados & Valoración': (
+      'Valoración': (
         <svg className="w-8 h-8 text-purple-600" fill="currentColor" viewBox="0 0 24 24">
           <circle cx="12" cy="12" r="10" strokeWidth="2" fill="none" stroke="currentColor" />
           <path strokeWidth="2" stroke="currentColor" d="M12 6v6l4 2" fill="none" />
@@ -274,7 +274,7 @@ export default function FunctionsPage() {
 
                 const bgColors: Record<string, string> = {
                   'Acciones': 'bg-red-50',
-                  'Derivados & Valoración': 'bg-purple-50',
+                  'Valoración': 'bg-purple-50',
                   'Economía & Macro': 'bg-blue-50',
                   'Noticias': 'bg-orange-50',
                   'Renta Fija & Crédito': 'bg-indigo-50'
