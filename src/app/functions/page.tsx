@@ -169,12 +169,13 @@ export default function FunctionsPage() {
   return (
     <div className="min-h-screen bg-white">
       <div className="container mx-auto px-6 pt-4 pb-0">
-        {/* Top section with badge, title, description and monitor */}
-        <div className="grid grid-cols-3 gap-4 mb-0 items-start">
-          {/* Left section - Content */}
-          <div className="col-span-2">
+        {/* Main grid: left = title + search, right = monitor */}
+        <div className="grid grid-cols-3 gap-6 mb-4 items-center">
+
+          {/* Left section - Title + Search (stacked) */}
+          <div className="col-span-2 flex flex-col justify-between">
             {/* Badge */}
-            <div className="inline-flex items-center gap-2 bg-red-50 px-4 py-2 rounded-lg mb-2">
+            <div className="inline-flex items-center gap-2 bg-red-50 px-4 py-2 rounded-lg mb-2 w-fit">
               <svg className="w-5 h-5 text-ric-red" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <rect x="2" y="3" width="20" height="14" rx="2" strokeWidth="2" />
                 <path strokeWidth="2" d="M8 21h8M12 17v4" />
@@ -193,47 +194,43 @@ export default function FunctionsPage() {
             </p>
 
             {/* Red divider */}
-            <div className="h-1 w-14 bg-gradient-to-r from-ric-red to-purple-600 rounded-full mb-4"></div>
+            <div className="h-1 w-14 bg-gradient-to-r from-ric-red to-purple-600 rounded-full mb-5"></div>
+
+            {/* Search - inside left column */}
+            <div className="flex items-center gap-3 mb-3">
+              <div className="w-10 h-10 bg-red-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                <svg className="w-5 h-5 text-ric-red" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                </svg>
+              </div>
+              <div>
+                <h2 className="text-lg font-bold text-ric-navy">Buscar Funciones</h2>
+                <p className="text-xs text-slate-600">Busca funciones Bloomberg por nombre, código ticker o descripción</p>
+              </div>
+            </div>
+            <div className="flex gap-3">
+              <input
+                type="text"
+                placeholder="Escribe el nombre de una función, ticker o palabra clave..."
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                className="flex-1 px-4 py-3 border-2 border-slate-300 rounded-lg focus:outline-none focus:border-ric-navy text-slate-700 text-sm"
+              />
+              <button className="px-6 py-3 bg-gradient-to-r from-ric-red to-purple-600 hover:from-red-700 hover:to-purple-700 text-white font-bold rounded-lg transition-all flex items-center justify-center">
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                </svg>
+              </button>
+            </div>
           </div>
 
-          {/* Right section - Monitor */}
-          <div className="col-span-1 flex items-start justify-center pt-2">
+          {/* Right section - Monitor filling full height */}
+          <div className="col-span-1 flex items-center justify-center h-full">
             <img
               src="/images/acel.png"
               alt="Bloomberg Terminal Interface"
-              className="w-full max-h-52 object-contain"
+              className="w-full h-auto object-contain"
             />
-          </div>
-        </div>
-
-        {/* Search Section - Full Width */}
-        <div className="-mx-6 mb-4 mt-4">
-          <div className="flex items-center gap-3 mb-3 px-6">
-            <div className="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center">
-              <svg className="w-6 h-6 text-ric-red" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-              </svg>
-            </div>
-            <div>
-              <h2 className="text-xl font-bold text-ric-navy">Buscar Funciones</h2>
-              <p className="text-sm text-slate-600">Busca funciones Bloomberg por nombre, código ticker o descripción</p>
-            </div>
-          </div>
-
-          {/* Custom Search Input - Full Width */}
-          <div className="flex gap-3 px-6">
-            <input
-              type="text"
-              placeholder="Escribe el nombre de una función, ticker o palabra clave..."
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-              className="flex-1 px-5 py-3 border-2 border-slate-300 rounded-lg focus:outline-none focus:border-ric-navy text-slate-700"
-            />
-            <button className="px-8 py-3 bg-gradient-to-r from-ric-red to-purple-600 hover:from-red-700 hover:to-purple-700 text-white font-bold rounded-lg transition-all flex items-center justify-center">
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-              </svg>
-            </button>
           </div>
         </div>
 
