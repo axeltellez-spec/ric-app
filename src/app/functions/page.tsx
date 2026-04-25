@@ -197,19 +197,17 @@ export default function FunctionsPage() {
           </div>
 
           {/* Right section - Monitor */}
-          <div className="col-span-1 flex items-center justify-center">
-            <div className="w-full flex justify-center items-center">
-              <img
-                src="/images/acel.png"
-                alt="Bloomberg Terminal Interface"
-                className="w-full h-auto object-contain scale-90"
-              />
-            </div>
+          <div className="col-span-1 flex items-start justify-center pt-2">
+            <img
+              src="/images/acel.png"
+              alt="Bloomberg Terminal Interface"
+              className="w-full max-h-52 object-contain"
+            />
           </div>
         </div>
 
         {/* Search Section - Full Width */}
-        <div className="-mx-6 mb-4 mt-3">
+        <div className="-mx-6 mb-4 mt-4">
           <div className="flex items-center gap-3 mb-3 px-6">
             <div className="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center">
               <svg className="w-6 h-6 text-ric-red" fill="none" stroke="currentColor" viewBox="0 0 24 24">
