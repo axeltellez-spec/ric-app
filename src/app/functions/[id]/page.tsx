@@ -25,7 +25,7 @@ const CATEGORY_IMAGES: Record<string, string> = {
   'Noticias': '/images/noticias.svg',
   'Acciones': '/images/acciones.svg',
   'Renta Fija & Crédito': '/images/renta-fija.svg',
-  'Derivados & Valoración': '/images/derivados.svg',
+  'Valoración': '/images/derivados.svg',
   'Economía & Macro': '/images/economia.svg',
 };
 
@@ -124,13 +124,13 @@ export default function FunctionDetailPage() {
         <div className="bg-white rounded-2xl shadow-xl overflow-hidden">
           <div className="grid md:grid-cols-2 gap-0">
             {/* Image Section */}
-            <div className="relative h-96 md:h-full bg-gradient-to-br from-ric-navy to-ric-red overflow-hidden md:order-2">
+            <div className={`relative h-96 md:h-full overflow-hidden md:order-2 ${func.imageUrl ? 'bg-black' : 'bg-gradient-to-br from-ric-navy to-ric-red'}`}>
               {func.imageUrl ? (
                 <Image
                   src={func.imageUrl}
                   alt={func.name}
                   fill
-                  className="object-cover"
+                  className="object-contain"
                 />
               ) : (
                 <Image

@@ -1757,7 +1757,7 @@
       "id": "fa",
       "codigo": "FA",
       "nombre": "Financial Analysis",
-      "descripcion": "Información financiera completa con datos históricos y proyecciones de analistas de una empresa.",
+      "descripcion": "FA <GO> provides comprehensive financial information for a company or equity index, including historical fundamental data and future estimates, so you can analyze the value of a potential investment, partnership, or acquisition target. The ESG tab provides data on environmental, social, and governance metrics so you can identify sustainability leaders and risks. —Bloomberg",
       "palabrasClaves": [
         "balance general",
         "balance",
@@ -1790,7 +1790,7 @@
         "financial statements"
       ],
       "categoria": "Valoración",
-      "imagen": null
+      "imagen": "/images/fa-screenshot.jpg"
     },
     {
       "id": "ge",
